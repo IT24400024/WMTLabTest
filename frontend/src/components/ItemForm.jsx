@@ -5,13 +5,13 @@ function ItemForm({ initialValues, onSubmit, submitText }) {
     initialValues
       ? { ...initialValues, modelNumber: initialValues.modelNumber || "" }
       : {
-      name: "",
-      category: "",
-      price: "",
-      description: "",
-      imageUrl: "",
-        modelNumber: "",
-    }
+          name: "",
+          category: "",
+          price: "",
+          description: "",
+          imageUrl: "",
+          modelNumber: "",
+        }
   );
 
   useEffect(() => {
