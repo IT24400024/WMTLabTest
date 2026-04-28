@@ -1,15 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function ItemForm({ initialValues, onSubmit, submitText }) {
   const [formData, setFormData] = useState(
-    initialValues || {
+    initialValues
+      ? { ...initialValues, modelNumber: initialValues.modelNumber || "" }
+      : {
       name: "",
       category: "",
       price: "",
       description: "",
       imageUrl: "",
+        modelNumber: "",
     }
   );
+
+  useEffect(() => {
+    if (initialValues) {
+      setFormData({ ...initialValues, modelNumber: initialValues.modelNumber || "" });
+    }
+  }, [initialValues]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,6 +42,9 @@ function ItemForm({ initialValues, onSubmit, submitText }) {
 
       <label>Category</label>
       <input name="category" value={formData.category} onChange={handleChange} required />
+
+      <label>Model Number</label>
+      <input name="modelNumber" value={formData.modelNumber} onChange={handleChange} />
 
       <label>Price</label>
       <input
